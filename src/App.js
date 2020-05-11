@@ -29,11 +29,14 @@ const App = props => {
     })
   }
 
+ 
+
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={switchNameHandler}>Change name and age</button>
+        <button className = "button"
+        onClick={switchNameHandler}>Change name and age</button>
         <Person 
           name={personState.persons[0].name} 
           age={personState.persons[0].age}
