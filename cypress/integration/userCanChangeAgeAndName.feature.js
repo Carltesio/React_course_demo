@@ -4,12 +4,13 @@ describe('User can navigate the app', () => {
   })
 
   describe('click button to change name and age', () => {
+    it('displays Ida and Carlos', () => {
+      cy.get('body').should('contain', "I'm Carlos and I am 35 years old!");
+    });
     beforeEach(() => {
-      cy.get('#about-tab').click();
+      cy.get('#button').click();
     });
 
-    it('displays About Me header', () => {
-      cy.get('#about-header').should('contain', 'About Me');
-    });
+    
   })
 })
