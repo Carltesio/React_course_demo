@@ -9,6 +9,9 @@ const App = props => {
       { name: 'Carlos', age: 33 },
       { name: 'Ida', age: 29 }
     ],
+  })
+
+  const [showPersonsState, setShowPersonsState] = useState({
     showPersons: false
   })
 
@@ -31,9 +34,9 @@ const App = props => {
   }
 
   const togglePersonhandler = () => {
-    const doesShow = this.state.showPersons
-    setPersonState({
-      showPersons: !doesShow
+    // const doesShow = showPersonsState
+    setShowPersonsState({
+      showPersons: !showPersonsState.showPersons
     })
   }
 
@@ -45,18 +48,19 @@ const App = props => {
       <button className="button" id="button"
         onClick={togglePersonhandler}>Change name and age</button>
       {
-        this.state.showPersons ? 
-        < div >
-        <Person
-          name={personState.persons[0].name}
-          age={personState.persons[0].age}
-          click={switchNameHandler} />
-        <Person
-          name={personState.persons[1].name}
-          age={personState.persons[1].age}
-          changed={nameChangeHandler} />
-        </div> : null}
-      </div >
-    )
+        showPersonsState.showPersons === true ?
+          < div >
+            <Person
+              name={personState.persons[0].name}
+              age={personState.persons[0].age}
+              click={switchNameHandler} />
+            <Person
+              name={personState.persons[1].name}
+              age={personState.persons[1].age}
+              changed={nameChangeHandler} />
+          </div> : null
+          }
+    </div >
+  )
 }
 export default App
