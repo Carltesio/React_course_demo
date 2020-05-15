@@ -24,13 +24,17 @@ const App = props => {
     })
   }
 
-  const nameChangeHandler = (event) => {
-    setPersonState({
-      persons: [
-        { name: event.target.value, age: 35 },
-        { name: event.target.value, age: 31 }
-      ]
+  const nameChangeHandler = (event, id) => {
+    const personIndex = personState.persons.findIndex(p => {
+      return p.id === id;
     })
+    const person = {...personState.persons[personIndex]}
+
+    person.name = event.target.value;
+    const persons = [...personState.persons];
+    persons[personIndex] = person;
+
+    setPersonState({persons: persons})
   }
 
   // const togglePersonhandler = () => {
@@ -57,7 +61,7 @@ const deletePersonHandler = (index) => {
         name={element.name} 
         age={element.age}
         key= {element.id}
-        changed={nameChangeHandler}
+        changed={(event) => {nameChangeHandler(event, element.id)}}
   />})}
         {/* <Person
           name={personState.persons[0].name}
