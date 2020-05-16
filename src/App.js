@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
 import Validation from './validation'
+import Char from './Char'
 
 const App = props => {
 
   const [personState, setPersonState] = useState({
     persons: [
-      {id: 1, name: 'Carlos', age: 33 },
-      {id: 2, name: 'Ida', age: 29 }
+      { id: 1, name: 'Carlos', age: 33 },
+      { id: 2, name: 'Ida', age: 29 }
     ],
   })
 
@@ -33,13 +34,11 @@ const App = props => {
     const personIndex = personState.persons.findIndex(p => {
       return p.id === id;
     })
-    const person = {...personState.persons[personIndex]}
-
+    const person = { ...personState.persons[personIndex] }
     person.name = event.target.value;
     const persons = [...personState.persons];
     persons[personIndex] = person;
-
-    setPersonState({persons: persons})
+    setPersonState({ persons: persons })
   }
 
   // const togglePersonhandler = () => {
@@ -49,31 +48,46 @@ const App = props => {
   //   })
   // }
 
-const deletePersonHandler = (index) => { 
-  const persons = [...personState.persons];
-  persons.splice(index, 1); 
-  setPersonState({persons: persons})
-}
+  const deletePersonHandler = (index) => {
+    const persons = [...personState.persons];
+    persons.splice(index, 1);
+    setPersonState({ persons: persons })
+  }
 
-const inputChangeHandler = (event) => {
-  setUserInputState({
-   userInput: event.target.value
+  const inputChangeHandler = (event) => {
+    setUserInputState({
+      userInput: event.target.value
+    })
+  }
+
+  const deleteCharHandler = (index) => {
+    let char = userInputState.userInput.split('')
+    char.splice(index, 1)
+    const updatedChar = char.join('')
+    setUserInputState({
+      userInput: updatedChar
+    })           
+  }
+
+
+  const charList = userInputState.userInput.split('').map((ch, index) => {
+    return <Char character={ch} key={index} clicked={() => {deleteCharHandler(index)}}/>
   })
-}
 
   let person = null;
 
   if (showPersonsState.showPersons) {
     person = (
       < div >
-      {personState.persons.map((element, index) => { 
-        return <Person
-        click={ () =>deletePersonHandler(index)} 
-        name={element.name} 
-        age={element.age}
-        key= {element.id}
-        changed={(event) => {nameChangeHandler(event, element.id)}}
-  />})}
+        {personState.persons.map((element, index) => {
+          return <Person
+            click={() => deletePersonHandler(index)}
+            name={element.name}
+            age={element.age}
+            key={element.id}
+            changed={(event) => { nameChangeHandler(event, element.id) }}
+          />
+        })}
       </div>
     )
 
@@ -85,12 +99,13 @@ const inputChangeHandler = (event) => {
       <button className="button" id="button"
         onClick={nameChangeHandler}>Change name and age</button>
       {person}
-      <input type="text" 
-      onChange = {inputChangeHandler}
-       value={userInputState.userInput}/>
-       <p>{userInputState.userInput}</p>
-       <Validation inputLength = {userInputState.userInput.length} />
+      <input type="text"
+        onChange={inputChangeHandler}
+        value={userInputState.userInput} />
+      <p>{userInputState.userInput}</p>
+      <Validation inputLength={userInputState.userInput.length} />
+      {charList}
     </div >
-      )
+  )
 }
 export default App
