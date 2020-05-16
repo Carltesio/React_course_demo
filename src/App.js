@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import Person from './Person/Person'
+import Person from './Person/Person';
+import Validation from './validation'
 
 const App = props => {
 
@@ -13,6 +14,10 @@ const App = props => {
 
   const [showPersonsState, setShowPersonsState] = useState({
     showPersons: true
+  })
+
+  const [userInputState, setUserInputState] = useState({
+    userInput: ''
   })
 
   const switchNameHandler = () => {
@@ -50,6 +55,12 @@ const deletePersonHandler = (index) => {
   setPersonState({persons: persons})
 }
 
+const inputChangeHandler = (event) => {
+  setUserInputState({
+   userInput: event.target.value
+  })
+}
+
   let person = null;
 
   if (showPersonsState.showPersons) {
@@ -63,14 +74,6 @@ const deletePersonHandler = (index) => {
         key= {element.id}
         changed={(event) => {nameChangeHandler(event, element.id)}}
   />})}
-        {/* <Person
-          name={personState.persons[0].name}
-          age={personState.persons[0].age}
-          click={switchNameHandler} />
-        <Person
-          name={personState.persons[1].name}
-          age={personState.persons[1].age}
-          changed={nameChangeHandler} /> */}
       </div>
     )
 
@@ -82,7 +85,12 @@ const deletePersonHandler = (index) => {
       <button className="button" id="button"
         onClick={nameChangeHandler}>Change name and age</button>
       {person}
+      <input type="text" 
+      onChange = {inputChangeHandler}
+       value={userInputState.userInput}/>
+       <p>{userInputState.userInput}</p>
+       <Validation inputLength = {userInputState.userInput.length} />
     </div >
-  )
+      )
 }
 export default App
