@@ -4,6 +4,7 @@ import Person from './Person/Person';
 import Validation from './validation'
 import Char from './Char'
 
+
 const App = props => {
 
   const [personState, setPersonState] = useState({
@@ -41,12 +42,12 @@ const App = props => {
     setPersonState({ persons: persons })
   }
 
-  // const togglePersonhandler = () => {
-  //   const doesShow = showPersonsState.showPersons
-  //   setShowPersonsState({
-  //     showPersons: !doesShow
-  //   })
-  // }
+  const togglePersonhandler = () => {
+    const doesShow = showPersonsState.showPersons
+    setShowPersonsState({
+      showPersons: !doesShow
+    })
+  }
 
   const deletePersonHandler = (index) => {
     const persons = [...personState.persons];
@@ -68,11 +69,19 @@ const App = props => {
       userInput: updatedChar
     })           
   }
-
-
+  
   const charList = userInputState.userInput.split('').map((ch, index) => {
     return <Char character={ch} key={index} clicked={() => {deleteCharHandler(index)}}/>
   })
+
+  const style = {
+    backgroundColor: 'green',
+    color: 'white',
+    font: 'inherit',
+    border: '1px solid blue',
+    padding: '8px',
+    cursor: 'pointer'
+  };
 
   let person = null;
 
@@ -90,14 +99,23 @@ const App = props => {
         })}
       </div>
     )
-
+    style.backgroundColor = 'red';
   }
+
+  let classes = [];
+  if(personState.persons.length <= 2){
+    classes.push('red')
+  }
+  if(personState.persons.length <= 1){
+    classes.push('bold')
+  }
+ 
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
-      <p>This is really working!</p>
-      <button className="button" id="button"
-        onClick={nameChangeHandler}>Change name and age</button>
+      <p className={classes.join(' ')}>This is really working!</p>
+      <button className="button" id="button" style={style}
+        onClick={togglePersonhandler}>Change name and age</button>
       {person}
       <input type="text"
         onChange={inputChangeHandler}
