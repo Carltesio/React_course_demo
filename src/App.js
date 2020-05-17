@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './App.css';
 import Person from './Person/Person';
-import Validation from './validation'
-import Char from './Char'
+import Validation from './validation';
+import Char from './Char';
+import Radium from 'radium'
 
 
 const App = props => {
@@ -80,7 +81,11 @@ const App = props => {
     font: 'inherit',
     border: '1px solid blue',
     padding: '8px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: 'lightgreen',
+      color: 'black'
+    }
   };
 
   let person = null;
@@ -100,6 +105,10 @@ const App = props => {
       </div>
     )
     style.backgroundColor = 'red';
+    style[':hover'] = {
+      backgroundColor: 'salmon',
+      color: 'black'
+    }
   }
 
   let classes = [];
@@ -126,4 +135,4 @@ const App = props => {
     </div >
   )
 }
-export default App
+export default Radium(App)
