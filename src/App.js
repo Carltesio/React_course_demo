@@ -3,8 +3,6 @@ import './App.css';
 import Person from './Person/Person';
 import Validation from './validation';
 import Char from './Char';
-import Radium from 'radium'
-
 
 const App = props => {
 
@@ -135,4 +133,4 @@ const App = props => {
     </div >
   )
 }
-export default Radium(App)
+export default App
