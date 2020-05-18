@@ -3,6 +3,21 @@ import './App.css';
 import Person from './Person/Person';
 import Validation from './validation';
 import Char from './Char';
+import styled from 'styled-components'
+
+const StyledButton = styled.button`
+background-color: green;
+    color: white;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: lightgreen;
+      color: black
+    }
+`
 
 const App = props => {
 
@@ -66,11 +81,11 @@ const App = props => {
     const updatedChar = char.join('')
     setUserInputState({
       userInput: updatedChar
-    })           
+    })
   }
-  
+
   const charList = userInputState.userInput.split('').map((ch, index) => {
-    return <Char character={ch} key={index} clicked={() => {deleteCharHandler(index)}}/>
+    return <Char character={ch} key={index} clicked={() => { deleteCharHandler(index) }} />
   })
 
   const style = {
@@ -110,19 +125,19 @@ const App = props => {
   }
 
   let classes = [];
-  if(personState.persons.length <= 2){
+  if (personState.persons.length <= 2) {
     classes.push('red')
   }
-  if(personState.persons.length <= 1){
+  if (personState.persons.length <= 1) {
     classes.push('bold')
   }
- 
+
   return (
     <div className="App">
       <h1>Hi, I'm a React App</h1>
       <p className={classes.join(' ')}>This is really working!</p>
-      <button className="button" id="button" style={style}
-        onClick={togglePersonhandler}>Change name and age</button>
+      <StyledButton  id="button" 
+        onClick={togglePersonhandler}>Change name and age</StyledButton>
       {person}
       <input type="text"
         onChange={inputChangeHandler}
