@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
+import classes from '/home/carlos/gitHub_repos/react_course/src/App.module.css';
 import Person from './Person/Person';
 import Validation from './validation';
 import Char from './Char';
+// import styled from 'styled-components'
 
 const App = props => {
 
@@ -66,11 +67,11 @@ const App = props => {
     const updatedChar = char.join('')
     setUserInputState({
       userInput: updatedChar
-    })           
+    })
   }
-  
+
   const charList = userInputState.userInput.split('').map((ch, index) => {
-    return <Char character={ch} key={index} clicked={() => {deleteCharHandler(index)}}/>
+    return <Char character={ch} key={index} clicked={() => { deleteCharHandler(index) }} />
   })
 
   const style = {
@@ -86,6 +87,7 @@ const App = props => {
     }
   };
 
+  let btnClass = '';
   let person = null;
 
   if (showPersonsState.showPersons) {
@@ -102,26 +104,27 @@ const App = props => {
         })}
       </div>
     )
-    style.backgroundColor = 'red';
-    style[':hover'] = {
-      backgroundColor: 'salmon',
-      color: 'black'
-    }
+    btnClass = classes.Red
+    // style.backgroundColor = 'red';
+    // style[':hover'] = {
+    //   backgroundColor: 'salmon',
+    //   color: 'black'
+    // }
   }
 
-  let classes = [];
-  if(personState.persons.length <= 2){
-    classes.push('red')
+  let assignedClasses = [];
+  if (personState.persons.length <= 2) {
+    assignedClasses.push(classes.red)
   }
-  if(personState.persons.length <= 1){
-    classes.push('bold')
+  if (personState.persons.length <= 1) {
+    assignedClasses.push(classes.bold)
   }
- 
+
   return (
-    <div className="App">
+    <div className={classes.App}>
       <h1>Hi, I'm a React App</h1>
-      <p className={classes.join(' ')}>This is really working!</p>
-      <button className="button" id="button" style={style}
+      <p className={assignedClasses.join(' ')}>This is really working!</p>
+      <button className={btnClass} id="button" alt = {showPersonsState.showPersons}
         onClick={togglePersonhandler}>Change name and age</button>
       {person}
       <input type="text"
