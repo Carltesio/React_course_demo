@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './App.css';
+import classes from '/home/carlos/gitHub_repos/react_course/src/App.module.css';
 import Person from './Person/Person';
 import Validation from './validation';
 import Char from './Char';
-import styled from 'styled-components'
+// import styled from 'styled-components'
 
 const App = props => {
 
@@ -87,6 +87,7 @@ const App = props => {
     }
   };
 
+  let btnClass = '';
   let person = null;
 
   if (showPersonsState.showPersons) {
@@ -103,6 +104,7 @@ const App = props => {
         })}
       </div>
     )
+    btnClass = classes.Red
     // style.backgroundColor = 'red';
     // style[':hover'] = {
     //   backgroundColor: 'salmon',
@@ -110,19 +112,19 @@ const App = props => {
     // }
   }
 
-  let classes = [];
+  let assignedClasses = [];
   if (personState.persons.length <= 2) {
-    classes.push('red')
+    assignedClasses.push(classes.red)
   }
   if (personState.persons.length <= 1) {
-    classes.push('bold')
+    assignedClasses.push(classes.bold)
   }
 
   return (
-    <div className="App">
+    <div className={classes.App}>
       <h1>Hi, I'm a React App</h1>
-      <p className={classes.join(' ')}>This is really working!</p>
-      <button  id="button" alt = {showPersonsState.showPersons}
+      <p className={assignedClasses.join(' ')}>This is really working!</p>
+      <button className={btnClass} id="button" alt = {showPersonsState.showPersons}
         onClick={togglePersonhandler}>Change name and age</button>
       {person}
       <input type="text"
