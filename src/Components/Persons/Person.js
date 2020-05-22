@@ -1,5 +1,5 @@
 import React from 'react'
-import classes from '/home/carlos/gitHub_repos/react_course/src/Person/Person.module.css'
+import classes from './Person.module.css'
 // import styled from 'styled-components'
 
 // const StyledDiv =  styled.div`

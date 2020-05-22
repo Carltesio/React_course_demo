@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import classes from '/home/carlos/gitHub_repos/react_course/src/App.module.css';
+import classes from '../Components/App.module.css';
 import Person from './Persons/Person';
 import Validation from './validation';
 import Char from './Char';
+import Persons from './Persons/Persons'
 // import styled from 'styled-components'
 
 const App = props => {
@@ -93,15 +94,11 @@ const App = props => {
   if (showPersonsState.showPersons) {
     person = (
       < div >
-        {personState.persons.map((element, index) => {
-          return <Person
-            click={() => deletePersonHandler(index)}
-            name={element.name}
-            age={element.age}
-            key={element.id}
-            changed={(event) => { nameChangeHandler(event, element.id) }}
-          />
-        })}
+      <Persons 
+      persons = {personState.persons}
+      clicked = {deletePersonHandler}
+      changed = {nameChangeHandler}/>
+   
       </div>
     )
     btnClass = classes.Red
