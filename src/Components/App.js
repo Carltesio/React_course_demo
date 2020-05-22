@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classes from '/home/carlos/gitHub_repos/react_course/src/App.module.css';
-import Person from './Person/Person';
+import Person from './Persons/Person';
 import Validation from './validation';
 import Char from './Char';
 // import styled from 'styled-components'
