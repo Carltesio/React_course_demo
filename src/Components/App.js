@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import classes from '../Components/App.module.css';
 import Person from './Persons/Person';
 import Validation from './validation';
 import Char from './Char';
-import Persons from './Persons/Persons'
+import Persons from './Persons/Persons';
+import Cockpit from './Cockpit/Cockpit'
 // import styled from 'styled-components'
 
 const App = props => {
@@ -88,41 +88,27 @@ const App = props => {
     }
   };
 
-  let btnClass = '';
   let person = null;
 
   if (showPersonsState.showPersons) {
-    person = (
-      < div >
-      <Persons 
-      persons = {personState.persons}
-      clicked = {deletePersonHandler}
-      changed = {nameChangeHandler}/>
-   
-      </div>
-    )
-    btnClass = classes.Red
+    person =
+      <Persons
+        persons={personState.persons}
+        clicked={deletePersonHandler}
+        changed={nameChangeHandler} />
     // style.backgroundColor = 'red';
     // style[':hover'] = {
     //   backgroundColor: 'salmon',
     //   color: 'black'
     // }
   }
-
-  let assignedClasses = [];
-  if (personState.persons.length <= 2) {
-    assignedClasses.push(classes.red)
-  }
-  if (personState.persons.length <= 1) {
-    assignedClasses.push(classes.bold)
-  }
-
   return (
-    <div className={classes.App}>
-      <h1>Hi, I'm a React App</h1>
-      <p className={assignedClasses.join(' ')}>This is really working!</p>
-      <button className={btnClass} id="button" alt = {showPersonsState.showPersons}
-        onClick={togglePersonhandler}>Change name and age</button>
+    <div >
+      <Cockpit
+        showPersons={showPersonsState.showPersons}
+        persons={personState.persons}
+        clicked={togglePersonhandler}
+      />
       {person}
       <input type="text"
         onChange={inputChangeHandler}
