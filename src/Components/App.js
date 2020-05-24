@@ -3,7 +3,8 @@ import Person from './Persons/Person';
 import Validation from './validation';
 import Char from './Char';
 import Persons from './Persons/Persons';
-import Cockpit from './Cockpit/Cockpit'
+import Cockpit from './Cockpit/Cockpit';
+import classes from './App.module.css';
 // import styled from 'styled-components'
 
 const App = props => {
@@ -102,21 +103,29 @@ const App = props => {
     //   color: 'black'
     // }
   }
+const input = []
   return (
-    <div >
+    <div>
+ <div >
       <Cockpit
         showPersons={showPersonsState.showPersons}
         persons={personState.persons}
         clicked={togglePersonhandler}
       />
       {person}
-      <input type="text"
+    </div >
+
+    <div className={classes.App}>
+      <input 
+        type="text"
         onChange={inputChangeHandler}
         value={userInputState.userInput} />
       <p>{userInputState.userInput}</p>
       <Validation inputLength={userInputState.userInput.length} />
       {charList}
-    </div >
+    </div>
+    </div>
+   
   )
 }
 export default App

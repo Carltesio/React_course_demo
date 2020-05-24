@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const validation = (props) => {
     let validationMessage = "Text long enough";
@@ -7,7 +7,7 @@ const validation = (props) => {
         validationMessage = "Text too short";
     }
     return (
-        <div>
+        <div >
             <p>{validationMessage}</p>
         </div>
     )

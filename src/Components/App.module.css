@@ -1,3 +1,9 @@
 .App{
     text-align: center
 }
+
+.App input{
+   background-color: seagreen;
+   padding-top: 15px;
+ 
+}
